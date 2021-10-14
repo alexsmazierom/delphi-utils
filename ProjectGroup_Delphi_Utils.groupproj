@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5BFAA508-1198-4F10-A28E-1164EBDCA22E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="pacotes\Pacote_Delphi_Utils.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Pacote_Delphi_Utils">
+        <MSBuild Projects="pacotes\Pacote_Delphi_Utils.dproj"/>
+    </Target>
+    <Target Name="Pacote_Delphi_Utils:Clean">
+        <MSBuild Projects="pacotes\Pacote_Delphi_Utils.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Pacote_Delphi_Utils:Make">
+        <MSBuild Projects="pacotes\Pacote_Delphi_Utils.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Pacote_Delphi_Utils"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Pacote_Delphi_Utils:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Pacote_Delphi_Utils:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
