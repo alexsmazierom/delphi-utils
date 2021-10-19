@@ -32,4 +32,8 @@ package Pacote_Delphi_Utils;
 requires
   rtl;
 
+contains
+  DelphiUtils.Hub in '..\fontes\DelphiUtils.Hub.pas',
+  DelphiUtils.Genericos in '..\fontes\DelphiUtils.Genericos.pas';
+
 end.
