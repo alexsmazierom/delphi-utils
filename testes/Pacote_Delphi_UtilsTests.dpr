@@ -16,7 +16,8 @@ program Pacote_Delphi_UtilsTests;
 
 uses
   DUnitTestRunner,
-  Test.DelphiUtils.Hub in 'Test.DelphiUtils.Hub.pas';
+  Test.DelphiUtils.Genericos in 'Test.DelphiUtils.Genericos.pas',
+  Test.DelphiUtils.MetodosAnonimos in 'Test.DelphiUtils.MetodosAnonimos.pas';
 
 {$R *.RES}
 

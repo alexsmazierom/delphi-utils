@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{981E7AFE-1A25-47BF-8BEE-9CBEB7B97907}</ProjectGuid>
         <ProjectVersion>18.8</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -47,6 +47,7 @@
         <DCC_Define>_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <SanitizedProjectName>Pacote_Delphi_UtilsTests</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;RESTComponents;fmxase;DBXInterBaseDriver;RESTDWWizards;vclactnband;vclFireDAC;ACBr_SATWS;tethering;svnui;FireDACADSDriver;ACRPLFileUtils20;frxFD26;vcltouch;ACBr_NFe;ACBr_NFeDanfeFR;vcldb;bindcompfmx;svn;ACBrDFeReportRL;Spring.Data;inetdb;ACBr_Diversos;FmxTeeUI;ACRPLBaseFMXSuite20;fmx;FireDACIBDriver;fmxdae;vclib;frxTee26;ACBr_CTeDacteFR;fs26;dbexpress;IndyCore;PackageVisual;RESTDWDriverFD;vclx;frxIntIO26;dsnap;FireDACCommon;ACBr_SATExtratoRL;ACBr_PCNComum;frxcs26;RESTBackendComponents;TBGWebCharts20;VCLRESTComponents;soapserver;ACBr_SAT;fsTee26;vclie;bindengine;DBXMySQLDriver;CloudService;FireDACMySQLDriver;ACBr_SATECFVirtual;frx26;FireDACCommonODBC;FireDACCommonDriver;RESTDWDriverRDW;frxIntIOIndy26;inet;IndyIPCommon;bindcompdbx;fsFD26;ACBr_TCP;vcl;IndyIPServer;ACBr_CTe;ACBr_SATExtratoESCPOS;frxDB26;IndySystem;frxDBX26;fsADO26;ACBr_NFeDanfeRL;ACBr_CTeDacteRL;ACBr_Integrador;dsnapcon;FireDACMSAccDriver;fmxFireDAC;fsDB26;vclimg;TeeDB;FireDAC;ThirdParty20;ACBr_MDFe;ACBr_Comum;frxe26;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FMXTee;soaprtl;DbxCommonDriver;ibxpress;Tee;xmlrtl;soapmidas;ibxbindings;fmxobj;vclwinx;ACBr_OpenSSL;rtl;DbxClientDriver;frxADO26;ACBr_DFeComum;CustomIPTransport;vcldsnap;SampleListViewMultiDetailAppearancePackage;bindcomp;appanalytics;ACBr_Serial;IndyIPClient;frce;bindcompvcl;TeeUI;dbxcds;VclSmp;adortl;ACBr_BoletoFR;ACBr_Boleto;dsnapxml;dbrtl;IndyProtocols;inetdbxpress;ACBr_MDFeDamdfeFR;RestDatawareCORE;$(DCC_UsePackage)</DCC_UsePackage>
@@ -78,7 +79,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Test.DelphiUtils.Hub.pas"/>
+        <DCCReference Include="Test.DelphiUtils.Genericos.pas"/>
+        <DCCReference Include="Test.DelphiUtils.MetodosAnonimos.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -961,6 +963,7 @@
                 <TestFramework>DUnit / Delphi Win32</TestFramework>
                 <TestRunner>GUI</TestRunner>
                 <SourceProjectName>C:\Users\AlexS\OneDrive\dev\github.com\alexsmazierom\delphi-utils\pacotes\Pacote_Delphi_Utils.dproj</SourceProjectName>
+                <TestProjectName/>
             </UnitTesting>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
