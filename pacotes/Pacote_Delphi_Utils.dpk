@@ -34,6 +34,7 @@ requires
 
 contains
   DelphiUtils.Hub in '..\fontes\DelphiUtils.Hub.pas',
-  DelphiUtils.Genericos in '..\fontes\DelphiUtils.Genericos.pas';
+  DelphiUtils.Genericos in '..\fontes\DelphiUtils.Genericos.pas',
+  DelphiUtils.MetodosAnonimos in '..\fontes\DelphiUtils.MetodosAnonimos.pas';
 
 end.
