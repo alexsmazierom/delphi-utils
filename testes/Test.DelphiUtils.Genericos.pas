@@ -1,4 +1,4 @@
-﻿unit Test.DelphiUtils.Hub;
+﻿unit Test.DelphiUtils.Genericos;
 
 interface
 
@@ -25,8 +25,8 @@ type
     procedure testar_metodo_classe_Usar_instanciando_TStringList_com_tratamento_excecao_EDivByZero;
     procedure testar_metodo_classe_Usar_instanciando_TStringList_com_tratamento_excecao_silenciosa;
     procedure testar_metodo_classe_Usar_instanciando_TClientDataSet_CreateDataSet_Append_1_registro;
-    procedure testar_metodo_classe_Retornar_instanciando_TStringList_retornando_Integer_qtde_itens_adicionados;
-    procedure testar_metodo_classe_Retornar_instanciando_TClientDataSet_retornando_Integer_qtde_registros_adicionados;
+    procedure testar_metodo_classe_Retornar_instanciando_TStringList_retorno_Integer_qtde_itens_adicionados;
+    procedure testar_metodo_classe_Retornar_instanciando_TClientDataSet_retorno_Integer_qtde_registros_adicionados;
   end;
 
 implementation
@@ -130,7 +130,7 @@ begin
   CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Usar_instanciando_TClientDataSet_CreateDataSet_Append_1_registro: falhou');
 end;
 
-procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Retornar_instanciando_TStringList_retornando_Integer_qtde_itens_adicionados;
+procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Retornar_instanciando_TStringList_retorno_Integer_qtde_itens_adicionados;
 const
   C_ESPERADO = 1;
 var
@@ -146,10 +146,10 @@ begin
         Result := Lista.Count;
       end);
 
-  CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Retornar_instanciando_TStringList_retornando_Integer_qtde_itens_adicionados: falhou');
+  CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Retornar_instanciando_TStringList_retorno_Integer_qtde_itens_adicionados: falhou');
 end;
 
-procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Retornar_instanciando_TClientDataSet_retornando_Integer_qtde_registros_adicionados;
+procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Retornar_instanciando_TClientDataSet_retorno_Integer_qtde_registros_adicionados;
 const
   C_ESPERADO = 1;
 var
@@ -171,7 +171,7 @@ begin
         Result := CDS.RecordCount;
       end);
 
-  CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Retornar_instanciando_TClientDataSet_retornando_Integer_qtde_registros_adicionados: falhou');
+  CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Retornar_instanciando_TClientDataSet_retorno_Integer_qtde_registros_adicionados: falhou');
 end;
 
 initialization
