@@ -1,4 +1,4 @@
-unit Test.DelphiUtils.Hub;
+﻿unit Test.DelphiUtils.Hub;
 
 interface
 
@@ -12,8 +12,9 @@ uses
   DelphiUtils.Hub;
 
 type
-  // Test methods for class TGenericosUtil
-
+  /// <summary>
+  ///   Caso de testes da classe utilitária TGenericosUtil
+  /// </summary>
   TestCase_classe_TGenericosUtil = class(TTestCase)
   private
   public
@@ -25,6 +26,7 @@ type
     procedure testar_metodo_classe_Usar_instanciando_TStringList_com_tratamento_excecao_silenciosa;
     procedure testar_metodo_classe_Usar_instanciando_TClientDataSet_CreateDataSet_Append_1_registro;
     procedure testar_metodo_classe_Retornar_instanciando_TStringList_retornando_Integer_qtde_itens_adicionados;
+    procedure testar_metodo_classe_Retornar_instanciando_TClientDataSet_retornando_Integer_qtde_registros_adicionados;
   end;
 
 implementation
@@ -69,7 +71,7 @@ begin
     TStringList.Create,
     procedure(Lista: TStringList)
     begin
-      raise EDivByZero.Create('Erro EDivByZero: divis�o por zero.');
+      raise EDivByZero.Create('Erro EDivByZero: divisão por zero.');
     end,
     procedure(E: Exception)
     begin
@@ -92,7 +94,7 @@ begin
     TStringList.Create,
     procedure(Lista: TStringList)
     begin
-      raise EDivByZero.Create('Erro EDivByZero: divis�o por zero.');
+      raise EDivByZero.Create('Erro EDivByZero: divisão por zero.');
     end,
     procedure(E: Exception)
     begin
@@ -145,6 +147,31 @@ begin
       end);
 
   CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Retornar_instanciando_TStringList_retornando_Integer_qtde_itens_adicionados: falhou');
+end;
+
+procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Retornar_instanciando_TClientDataSet_retornando_Integer_qtde_registros_adicionados;
+const
+  C_ESPERADO = 1;
+var
+  LAtual: Integer;
+begin
+  LAtual :=
+    TGenericosUtil.Retornar<TClientDataSet, Integer>(
+      TClientDataSet.Create(nil),
+      function(CDS: TClientDataSet): Integer
+      begin
+        Result := 0;
+        CDS.FieldDefs.Add('ID', ftInteger, 0, True);
+        CDS.FieldDefs.Add('NAME', ftString, 80, True);
+        CDS.CreateDataSet;
+        CDS.Append;
+        CDS.FieldByName('ID').AsInteger := 1;
+        CDS.FieldByName('NAME').AsString := UnitName;
+        CDS.Post;
+        Result := CDS.RecordCount;
+      end);
+
+  CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_Retornar_instanciando_TClientDataSet_retornando_Integer_qtde_registros_adicionados: falhou');
 end;
 
 initialization
