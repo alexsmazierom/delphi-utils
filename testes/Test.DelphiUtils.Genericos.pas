@@ -52,8 +52,13 @@ var
 begin
   LVantagens := 0;
 
+  { NOTA : classe TGenericosUtil não precisa ser instanciada pois utiliza métodos de classe,
+    similar ao conceito de método estático no Java. }
+
   TGenericosUtil.Usar<TStringList>(
+    // instanciando diretamente a lista
     TStringList.Create,
+    // método anônimo com instância da lista
     procedure(StrLista: TStringList)
     begin
       StrLista.Add('#1 não requer de variável local para trabalhar com TStringList');
@@ -61,6 +66,7 @@ begin
       LVantagens := StrLista.Count;
     end);
 
+  // formatando uma mensagem na tela para simples verificação
   ShowMessageFmt('Vantagens adicionadas a lista: %d.', [LVantagens]);
 end;
 
