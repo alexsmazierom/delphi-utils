@@ -121,6 +121,7 @@
         <DCCReference Include="..\fontes\DelphiUtils.Hub.pas"/>
         <DCCReference Include="..\fontes\DelphiUtils.Genericos.pas"/>
         <DCCReference Include="..\fontes\DelphiUtils.MetodosAnonimos.pas"/>
+        <DCCReference Include="..\fontes\DelphiUtils.ExpressoesRegulares.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
