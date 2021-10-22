@@ -81,6 +81,7 @@
         </DelphiCompile>
         <DCCReference Include="Test.DelphiUtils.Genericos.pas"/>
         <DCCReference Include="Test.DelphiUtils.MetodosAnonimos.pas"/>
+        <DCCReference Include="Test.DelphiUtils.ExpressoesRegulares.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
