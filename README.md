@@ -5,11 +5,12 @@ IDE utilizada para compilação e testes: Delphi 10.3 CE (Community Edition)
 
 ## Exemplos de implementação
 
-Genéricos (generics):
+### Genéricos ou "Generics"
+
+Exemplo de código com `Usar<T: class>(AObjeto: T; AProcedimento: TProc<T>)`:
 
 ```delphi
 uses
-  (...)
   System.Classes,
   Vcl.Dialogs,
   DelphiUtils.Hub;
@@ -21,7 +22,9 @@ begin
   LVantagens := 0;
 
   TGenericosUtil.Usar<TStringList>(
+    // instanciando diretamente a lista
     TStringList.Create,
+    // método anônimo com instância da lista 
     procedure(StrLista: TStringList)
     begin
       StrLista.Add('#1 não requer de variável local para trabalhar com TStringList');
