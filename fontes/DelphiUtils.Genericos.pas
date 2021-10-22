@@ -116,7 +116,12 @@ begin
   try
     AProcedimento(AObjeto);
   finally
+  {$IFDEF MSWINDOWS}
     FreeAndNil(AObjeto);
+  {$ELSE}
+    if Assigned(AObjeto) then
+      AObjeto.DisposeOf;
+  {$ENDIF}
   end;
 end;
 
@@ -134,7 +139,12 @@ begin
           //raise;
     end;
   finally
+  {$IFDEF MSWINDOWS}
     FreeAndNil(AObjeto);
+  {$ELSE}
+    if Assigned(AObjeto) then
+      AObjeto.DisposeOf;
+  {$ENDIF}
   end;
 end;
 
@@ -143,7 +153,12 @@ begin
   try
     Result := AFuncao(AObjeto);
   finally
+  {$IFDEF MSWINDOWS}
     FreeAndNil(AObjeto);
+  {$ELSE}
+    if Assigned(AObjeto) then
+      AObjeto.DisposeOf;
+  {$ENDIF}
   end;
 end;
 
@@ -161,7 +176,12 @@ begin
           //raise;
     end;
   finally
+  {$IFDEF MSWINDOWS}
     FreeAndNil(AObjeto);
+  {$ELSE}
+    if Assigned(AObjeto) then
+      AObjeto.DisposeOf;
+  {$ENDIF}
   end;
 end;
 
