@@ -3,9 +3,24 @@ Classes utilitárias usando os recursos mais atuais da linguagem Delphi.
 
 IDE utilizada para compilação e testes: Delphi 10.3 CE (Community Edition)
 
+## Instalação
+Adicionar o caminho completo da pasta fontes, ex.: `C:\delphi-utils-main\fontes` ao Library Path da IDE Delphi (Tools > Options > Language > Delphi > Library).
+
+## Uses
+
+Uma vez adicionado a pasta de fontes ao Library Path, adicionar no uses apenas a unit `DelphiUtils.Hub`, que facilita o acesso a todos as classes utilitárias do pacote com o mínimo de acoplamento.
+
+```delphi
+uses
+{ delphi-utils/fontes }  
+  DelphiUtils.Hub;
+```
+
 ## Exemplos de implementação
 
 ### Generics ou "Genéricos"
+
+
 
 Trecho de código de exemplo com método `Usar<T: class>(AObjeto: T; AProcedimento: TProc<T>)`:
 
