@@ -12,6 +12,9 @@
         <Projects Include="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="exemplos\FMX\ExemploFMX_Delphi_Utils.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="ExemploVCL_Deplhi_Utils:Make">
         <MSBuild Projects="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ExemploFMX_Delphi_Utils">
+        <MSBuild Projects="exemplos\FMX\ExemploFMX_Delphi_Utils.dproj"/>
+    </Target>
+    <Target Name="ExemploFMX_Delphi_Utils:Clean">
+        <MSBuild Projects="exemplos\FMX\ExemploFMX_Delphi_Utils.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExemploFMX_Delphi_Utils:Make">
+        <MSBuild Projects="exemplos\FMX\ExemploFMX_Delphi_Utils.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Pacote_Delphi_Utils;Pacote_Delphi_UtilsTests;ExemploVCL_Deplhi_Utils"/>
+        <CallTarget Targets="Pacote_Delphi_Utils;Pacote_Delphi_UtilsTests;ExemploVCL_Deplhi_Utils;ExemploFMX_Delphi_Utils"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Pacote_Delphi_Utils:Clean;Pacote_Delphi_UtilsTests:Clean;ExemploVCL_Deplhi_Utils:Clean"/>
+        <CallTarget Targets="Pacote_Delphi_Utils:Clean;Pacote_Delphi_UtilsTests:Clean;ExemploVCL_Deplhi_Utils:Clean;ExemploFMX_Delphi_Utils:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Pacote_Delphi_Utils:Make;Pacote_Delphi_UtilsTests:Make;ExemploVCL_Deplhi_Utils:Make"/>
+        <CallTarget Targets="Pacote_Delphi_Utils:Make;Pacote_Delphi_UtilsTests:Make;ExemploVCL_Deplhi_Utils:Make;ExemploFMX_Delphi_Utils:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

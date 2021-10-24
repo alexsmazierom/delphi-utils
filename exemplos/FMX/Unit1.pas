@@ -3,28 +3,28 @@ unit Unit1;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.IOUtils,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.IOUtils,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
   Data.DB,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
-  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
-  FireDAC.Stan.ExprFuncs, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, FireDAC.Comp.Client,
-  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
+  FireDAC.Stan.ExprFuncs, FireDAC.FMXUI.Wait, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Comp.UI,
 { delphi-utils/fontes }
   DelphiUtils.Hub;
 
 type
-  TForm1 = class(TForm)
+  TForm10 = class(TForm)
     ButtonUsarStringList: TButton;
     ButtonUsarFDQuery: TButton;
+    StatusBar1: TStatusBar;
     FDConnection1: TFDConnection;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
-    StatusBar1: TStatusBar;
     FDQuery1: TFDQuery;
+    procedure FormCreate(Sender: TObject);
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,13 +32,13 @@ type
   end;
 
 var
-  Form1: TForm1;
+  Form10: TForm10;
 
 implementation
 
-{$R *.dfm}
+{$R *.fmx}
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TForm10.FormCreate(Sender: TObject);
 const
   C_DML_ADD_TEMPLATE = 'insert into COMPONENTE values (''%s'', %d, ''%s'')';
 var
@@ -66,7 +66,7 @@ begin
     end;
 end;
 
-procedure TForm1.ButtonUsarStringListClick(Sender: TObject);
+procedure TForm10.ButtonUsarStringListClick(Sender: TObject);
 var
   LItens: Integer;
 begin
@@ -90,7 +90,7 @@ begin
   ShowMessageFmt('Quantidade itens na lista: %d.', [LItens]);
 end;
 
-procedure TForm1.ButtonUsarFDQueryClick(Sender: TObject);
+procedure TForm10.ButtonUsarFDQueryClick(Sender: TObject);
 var
   LEncontrouComponente: Boolean;
   LNomeComponente: string;
