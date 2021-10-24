@@ -55,3 +55,5 @@ begin
   ShowMessageFmt('Quantidade itens na lista: %d.', [LItens]);
 end;
 ```
+
+Veja outras implementações, como por exemplo, usando TFDQuery (FireDAC) em [Exemplos VCL](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/VCL).
