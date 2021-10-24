@@ -21,7 +21,6 @@ type
     procedure SetUp; override;
     procedure TearDown; override;
   published
-    procedure testar_metodo_classe_Usar_instanciando_TStringList_apresentacao_README_md;
     procedure testar_metodo_classe_Usar_instanciando_TStringList_verificar_instancia;
     procedure testar_metodo_classe_Usar_instanciando_TStringList_com_tratamento_excecao_EDivByZero;
     procedure testar_metodo_classe_Usar_instanciando_TStringList_com_tratamento_excecao_silenciosa;
@@ -44,30 +43,6 @@ end;
 procedure TestCase_classe_TGenericosUtil.TearDown;
 begin
 
-end;
-
-procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Usar_instanciando_TStringList_apresentacao_README_md;
-var
-  LVantagens: Integer;
-begin
-  LVantagens := 0;
-
-  { NOTA : classe TGenericosUtil não precisa ser instanciada pois utiliza métodos de classe,
-    similar ao conceito de método estático no Java. }
-
-  TGenericosUtil.Usar<TStringList>(
-    // instanciando diretamente a lista
-    TStringList.Create,
-    // método anônimo com instância da lista
-    procedure(StrLista: TStringList)
-    begin
-      StrLista.Add('#1 não requer de variável local para trabalhar com TStringList');
-      StrLista.Add('#2 não provoca vazamentos de memória ("memory leaks") pois é liberado automaticamente');
-      LVantagens := StrLista.Count;
-    end);
-
-  // formatando uma mensagem na tela para simples verificação
-  ShowMessageFmt('Vantagens adicionadas a lista: %d.', [LVantagens]);
 end;
 
 procedure TestCase_classe_TGenericosUtil.testar_metodo_classe_Usar_instanciando_TStringList_verificar_instancia;

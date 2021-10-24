@@ -5,37 +5,38 @@ IDE utilizada para compilação e testes: Delphi 10.3 CE (Community Edition)
 
 ## Exemplos de implementação
 
-### Genéricos ou "Generics"
+### Generics ou "Genéricos"
 
-Exemplo de código com `Usar<T: class>(AObjeto: T; AProcedimento: TProc<T>)`:
+Trecho de código de exemplo com método `Usar<T: class>(AObjeto: T; AProcedimento: TProc<T>)`:
 
 ```delphi
 uses
   System.Classes,
   Vcl.Dialogs,
+{ delphi-utils/fontes }  
   DelphiUtils.Hub;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  LVantagens: Integer;
+  LItens: Integer;
 begin
-  LVantagens := 0;
+  LItens := 0;
 
   { NOTA : classe TGenericosUtil não precisa ser instanciada pois utiliza métodos de classe,
     similar ao conceito de método estático no Java. }
-    
+
   TGenericosUtil.Usar<TStringList>(
     // instanciando diretamente a lista
     TStringList.Create,
-    // método anônimo com instância da lista 
+    // método anônimo com instância da lista
     procedure(StrLista: TStringList)
     begin
       StrLista.Add('#1 não requer de variável local para trabalhar com TStringList');
       StrLista.Add('#2 não provoca vazamentos de memória ("memory leaks") pois é liberado automaticamente');
-      LVantagens := StrLista.Count;
+      LItens := StrLista.Count;
     end);
 
   // formatando uma mensagem na tela para simples verificação
-  ShowMessageFmt('Vantagens adicionadas a lista: %d.', [LVantagens]);
+  ShowMessageFmt('Quantidade itens na lista: %d.', [LItens]);
 end;
 ```

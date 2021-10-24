@@ -9,6 +9,9 @@
         <Projects Include="testes\Pacote_Delphi_UtilsTests.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="Pacote_Delphi_UtilsTests:Make">
         <MSBuild Projects="testes\Pacote_Delphi_UtilsTests.dproj" Targets="Make"/>
     </Target>
+    <Target Name="ExemploVCL_Deplhi_Utils">
+        <MSBuild Projects="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj"/>
+    </Target>
+    <Target Name="ExemploVCL_Deplhi_Utils:Clean">
+        <MSBuild Projects="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExemploVCL_Deplhi_Utils:Make">
+        <MSBuild Projects="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Pacote_Delphi_Utils;Pacote_Delphi_UtilsTests"/>
+        <CallTarget Targets="Pacote_Delphi_Utils;Pacote_Delphi_UtilsTests;ExemploVCL_Deplhi_Utils"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Pacote_Delphi_Utils:Clean;Pacote_Delphi_UtilsTests:Clean"/>
+        <CallTarget Targets="Pacote_Delphi_Utils:Clean;Pacote_Delphi_UtilsTests:Clean;ExemploVCL_Deplhi_Utils:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Pacote_Delphi_Utils:Make;Pacote_Delphi_UtilsTests:Make"/>
+        <CallTarget Targets="Pacote_Delphi_Utils:Make;Pacote_Delphi_UtilsTests:Make;ExemploVCL_Deplhi_Utils:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
