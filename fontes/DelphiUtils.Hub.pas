@@ -3,8 +3,7 @@ unit DelphiUtils.Hub;
 interface
 
 uses
-{ RTL }
-  System.SysUtils, System.StrUtils,
+  System.SysUtils,
 { delphi-utils/fontes }
   DelphiUtils.Genericos,
   DelphiUtils.MetodosAnonimos,

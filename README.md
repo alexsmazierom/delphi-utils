@@ -56,4 +56,4 @@ begin
 end;
 ```
 
-Veja outras implementações, como por exemplo, usando TFDQuery (FireDAC) em [Exemplos VCL](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/VCL).
+Veja outras implementações, como por exemplo, usando TFDQuery (FireDAC) em [Exemplos VCL](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/VCL) ou [Exemplos FMX](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/FMX).

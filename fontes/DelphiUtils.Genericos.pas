@@ -116,11 +116,11 @@ begin
   try
     AProcedimento(AObjeto);
   finally
-  {$IFDEF MSWINDOWS}
-    FreeAndNil(AObjeto);
-  {$ELSE}
+  {$IFDEF ANDROID}
     if Assigned(AObjeto) then
       AObjeto.DisposeOf;
+  {$ELSE}
+    FreeAndNil(AObjeto);
   {$ENDIF}
   end;
 end;
@@ -139,11 +139,11 @@ begin
           //raise;
     end;
   finally
-  {$IFDEF MSWINDOWS}
-    FreeAndNil(AObjeto);
-  {$ELSE}
+  {$IFDEF ANDROID}
     if Assigned(AObjeto) then
       AObjeto.DisposeOf;
+  {$ELSE}
+    FreeAndNil(AObjeto);
   {$ENDIF}
   end;
 end;
@@ -153,11 +153,11 @@ begin
   try
     Result := AFuncao(AObjeto);
   finally
-  {$IFDEF MSWINDOWS}
-    FreeAndNil(AObjeto);
-  {$ELSE}
+  {$IFDEF ANDROID}
     if Assigned(AObjeto) then
       AObjeto.DisposeOf;
+  {$ELSE}
+    FreeAndNil(AObjeto);
   {$ENDIF}
   end;
 end;
@@ -176,11 +176,11 @@ begin
           //raise;
     end;
   finally
-  {$IFDEF MSWINDOWS}
-    FreeAndNil(AObjeto);
-  {$ELSE}
+  {$IFDEF ANDROID}
     if Assigned(AObjeto) then
       AObjeto.DisposeOf;
+  {$ELSE}
+    FreeAndNil(AObjeto);
   {$ENDIF}
   end;
 end;

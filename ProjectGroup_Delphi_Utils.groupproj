@@ -6,7 +6,7 @@
         <Projects Include="pacotes\Pacote_Delphi_Utils.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="testes\Pacote_Delphi_UtilsTests.dproj">
+        <Projects Include="testes\DUnit\Pacote_Delphi_UtilsTests.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj">
@@ -33,13 +33,13 @@
         <MSBuild Projects="pacotes\Pacote_Delphi_Utils.dproj" Targets="Make"/>
     </Target>
     <Target Name="Pacote_Delphi_UtilsTests">
-        <MSBuild Projects="testes\Pacote_Delphi_UtilsTests.dproj"/>
+        <MSBuild Projects="testes\DUnit\Pacote_Delphi_UtilsTests.dproj"/>
     </Target>
     <Target Name="Pacote_Delphi_UtilsTests:Clean">
-        <MSBuild Projects="testes\Pacote_Delphi_UtilsTests.dproj" Targets="Clean"/>
+        <MSBuild Projects="testes\DUnit\Pacote_Delphi_UtilsTests.dproj" Targets="Clean"/>
     </Target>
     <Target Name="Pacote_Delphi_UtilsTests:Make">
-        <MSBuild Projects="testes\Pacote_Delphi_UtilsTests.dproj" Targets="Make"/>
+        <MSBuild Projects="testes\DUnit\Pacote_Delphi_UtilsTests.dproj" Targets="Make"/>
     </Target>
     <Target Name="ExemploVCL_Deplhi_Utils">
         <MSBuild Projects="exemplos\VCL\ExemploVCL_Deplhi_Utils.dproj"/>
