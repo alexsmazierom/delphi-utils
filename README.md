@@ -54,7 +54,11 @@ begin
 end;
 ```
 
-Trecho de código de exemplo com método `Iterar(APosicaoInicial: Int64; const APosicaoParada: Int64; AProc: TProc<Int64>; const AIncremento: Cardinal = 1)`:
+Veja outras implementações, como por exemplo, usando TFDQuery (FireDAC) em [Exemplos VCL](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/VCL) ou [Exemplos FMX](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/FMX).
+
+### Anonymous Methods ou "Métodos Anônimos"
+
+Trecho de código VCL de exemplo com método `Iterar(APosicaoInicial: Int64; const APosicaoParada: Int64; AProc: TProc<Int64>; const AIncremento: Cardinal = 1)`:
 
 ```delphi
 procedure TForm1.Button2Click(Sender: TObject);
@@ -69,9 +73,48 @@ begin
     procedure(I: Int64)
     begin
       Inc(LIteracoes);
+      // I armazena a posição atual do iterador e também pode ser utilizada dentro do método anônimo
     end);
 
   ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
+end;
+```
+
+Modificando o incremento neste trecho de código FMX utilizando uma a sobrecarga para Single do método `Iterar(APosicaoInicial: Single; const APosicaoParada: Single; AProc: TProc<Single>; const AIncremento: Cardinal = 1)`, com incremento decimal:
+
+```delphi
+procedure TForm1.Button4Click(Sender: TObject);
+const
+  C_INCREMENTO: Cardinal = 5;
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  TButton(Sender).Enabled := False;
+  try
+    ProgressBar1.Value := 0;
+    ProgressBar1.Max := 100;
+
+    // for (int i = 0; i <= 100; i += 5) [Java]
+
+    TMetodosAnonimosUtil.Iterar(ProgressBar1.Value, ProgressBar1.Max,
+      procedure(I: Single)
+      begin
+        ProgressBar1.Value := I;
+        Inc(LIteracoes);
+        Sleep(100);
+        Application.ProcessMessages;
+      end,
+      // modificado o incremento padrao de 1 em 1 para 5
+      C_INCREMENTO);
+
+  finally
+    TButton(Sender).Text := 'Reiniciar';
+    TButton(Sender).Enabled := True;
+  end;
+
+  ShowMessageFmt('Progresso atingiu %.2f%% com %d iterações.', [ProgressBar1.Value, LIteracoes]);
 end;
 ```
 
@@ -90,10 +133,9 @@ begin
     procedure(I: Int64)
     begin
       Inc(LIteracoes);
+      // I armazena a posição atual do iterador e também pode ser utilizada dentro do método anônimo
     end);
 
   ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
 end;
 ```
-
-Veja outras implementações, como por exemplo, usando TFDQuery (FireDAC) em [Exemplos VCL](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/VCL) ou [Exemplos FMX](https://github.com/alexsmazierom/delphi-utils/tree/main/exemplos/FMX).
