@@ -20,8 +20,6 @@ uses
 
 ### Generics ou "Genéricos"
 
-
-
 Trecho de código de exemplo com método `Usar<T: class>(AObjeto: T; AProcedimento: TProc<T>)`:
 
 ```delphi
@@ -53,6 +51,48 @@ begin
 
   // formatando uma mensagem na tela para simples verificação
   ShowMessageFmt('Quantidade itens na lista: %d.', [LItens]);
+end;
+```
+
+Trecho de código de exemplo com método `Iterar(APosicaoInicial: Int64; const APosicaoParada: Int64; AProc: TProc<Int64>; const AIncremento: Cardinal = 1)`:
+
+```delphi
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  // for I := 1 to 10 do
+
+  TMetodosAnonimosUtil.Iterar(1, 10,
+    procedure(I: Int64)
+    begin
+      Inc(LIteracoes);
+    end);
+
+  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
+end;
+```
+
+Trecho de código de exemplo com método `IterarReverso(APosicaoInicial: Int64; const APosicaoParada: Int64; AProc: TProc<Int64>; const ADecremento: Integer = -1)`:
+
+```delphi
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  // for I := 10 downto 1 do
+
+  TMetodosAnonimosUtil.IterarReverso(10, 1,
+    procedure(I: Int64)
+    begin
+      Inc(LIteracoes);
+    end);
+
+  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
 end;
 ```
 
