@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1 - ExemploVCL_Deplhi_Utils.d'
   ClientHeight = 324
-  ClientWidth = 580
+  ClientWidth = 736
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -35,9 +35,10 @@ object Form1: TForm1
   object StatusBar1: TStatusBar
     Left = 0
     Top = 305
-    Width = 580
+    Width = 736
     Height = 19
     Panels = <>
+    ExplicitWidth = 580
   end
   object ButtonIterar: TButton
     Left = 208
@@ -56,6 +57,30 @@ object Form1: TForm1
     Caption = 'TMetodosAnonimosUtil.IterarReverso'
     TabOrder = 4
     OnClick = ButtonIterarReversoClick
+  end
+  object GroupBox1: TGroupBox
+    Left = 208
+    Top = 111
+    Width = 364
+    Height = 51
+    Caption = ' TMetodosAnonimosUtil.Iterar (incrementado 5) '
+    TabOrder = 5
+    object ProgressBar1: TProgressBar
+      Left = 12
+      Top = 20
+      Width = 290
+      Height = 17
+      TabOrder = 0
+    end
+    object ButtonIterarIncremento5: TButton
+      Left = 311
+      Top = 16
+      Width = 43
+      Height = 25
+      Caption = 'Iniciar'
+      TabOrder = 1
+      OnClick = ButtonIterarIncremento5Click
+    end
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

@@ -1,9 +1,10 @@
-unit Unit1;
+ï»¿unit Unit1;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.IOUtils,
+  System.Generics.Collections,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
@@ -24,11 +25,15 @@ type
     FDQuery1: TFDQuery;
     ButtonIterar: TButton;
     ButtonIterarReverso: TButton;
+    GroupBox1: TGroupBox;
+    ProgressBar1: TProgressBar;
+    ButtonIterarIncremento5: TButton;
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ButtonIterarClick(Sender: TObject);
     procedure ButtonIterarReversoClick(Sender: TObject);
+    procedure ButtonIterarIncremento5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,21 +81,21 @@ var
 begin
   LItens := 0;
 
-  { NOTA : classe TGenericosUtil não precisa ser instanciada pois utiliza métodos de classe,
-    similar ao conceito de método estático no Java. }
+  { NOTA : classe TGenericosUtil nÃ£o precisa ser instanciada pois utiliza mÃ©todos de classe,
+    similar ao conceito de mÃ©todo estÃ¡tico no Java. }
 
   TGenericosUtil.Usar<TStringList>(
     // instanciando diretamente a lista
     TStringList.Create,
-    // método anônimo com instância da lista
+    // mÃ©todo anÃ´nimo com instÃ¢ncia da lista
     procedure(StrLista: TStringList)
     begin
-      StrLista.Add('#1 não requer de variável local para trabalhar com TStringList');
-      StrLista.Add('#2 não provoca vazamentos de memória ("memory leaks") pois é liberado automaticamente');
+      StrLista.Add('#1 nÃ£o requer de variÃ¡vel local para trabalhar com TStringList');
+      StrLista.Add('#2 nÃ£o provoca vazamentos de memÃ³ria ("memory leaks") pois Ã© liberado automaticamente');
       LItens := StrLista.Count;
     end);
 
-  // formatando uma mensagem na tela para simples verificação
+  // formatando uma mensagem na tela para simples verificaÃ§Ã£o
   ShowMessageFmt('Quantidade itens na lista: %d.', [LItens]);
 end;
 
@@ -131,7 +136,7 @@ begin
       Inc(LIteracoes);
     end);
 
-  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
+  ShowMessageFmt('NÃºmero de iteraÃ§Ãµes: %d', [LIteracoes]);
 end;
 
 procedure TForm1.ButtonIterarReversoClick(Sender: TObject);
@@ -148,7 +153,41 @@ begin
       Inc(LIteracoes);
     end);
 
-  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
+  ShowMessageFmt('NÃºmero de iteraÃ§Ãµes: %d', [LIteracoes]);
+end;
+
+procedure TForm1.ButtonIterarIncremento5Click(Sender: TObject);
+const
+  C_INCREMENTO = 5;
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  TButton(Sender).Enabled := False;
+  try
+    ProgressBar1.Position := 0;
+    ProgressBar1.Max := 100;
+
+    // for (int i = 0; i <= 100; i += 5) [Java]
+
+    TMetodosAnonimosUtil.Iterar(ProgressBar1.Position, ProgressBar1.Max,
+      procedure(I: Integer)
+      begin
+        ProgressBar1.Position := I;
+        Inc(LIteracoes);
+        Sleep(100);
+        Application.ProcessMessages;
+      end,
+      // modificado o incremento padrao de 1 em 1 para 5
+      C_INCREMENTO);
+
+  finally
+    TButton(Sender).Caption := 'Reiniciar';
+    TButton(Sender).Enabled := True;
+  end;
+
+  ShowMessageFmt('Progresso atingiu %d%% com %d iteraÃ§Ãµes.', [ProgressBar1.Position, LIteracoes]);
 end;
 
 initialization
