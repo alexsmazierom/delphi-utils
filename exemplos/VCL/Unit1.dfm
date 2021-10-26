@@ -16,19 +16,19 @@ object Form1: TForm1
   TextHeight = 13
   object ButtonUsarStringList: TButton
     Left = 16
-    Top = 16
-    Width = 137
+    Top = 24
+    Width = 177
     Height = 25
-    Caption = 'ButtonUsarStringList'
+    Caption = 'TGenericosUtil.Usar TStringList'
     TabOrder = 0
     OnClick = ButtonUsarStringListClick
   end
   object ButtonUsarFDQuery: TButton
     Left = 16
     Top = 55
-    Width = 137
+    Width = 177
     Height = 25
-    Caption = 'ButtonUsarFDQuery'
+    Caption = 'TGenericosUtil.Usar TFDQuery'
     TabOrder = 1
     OnClick = ButtonUsarFDQueryClick
   end
@@ -38,29 +38,44 @@ object Form1: TForm1
     Width = 580
     Height = 19
     Panels = <>
-    ExplicitLeft = 448
-    ExplicitTop = 224
-    ExplicitWidth = 0
+  end
+  object ButtonIterar: TButton
+    Left = 208
+    Top = 24
+    Width = 209
+    Height = 25
+    Caption = 'TMetodosAnonimosUtil.Iterar'
+    TabOrder = 3
+    OnClick = ButtonIterarClick
+  end
+  object ButtonIterarReverso: TButton
+    Left = 208
+    Top = 55
+    Width = 209
+    Height = 25
+    Caption = 'TMetodosAnonimosUtil.IterarReverso'
+    TabOrder = 4
+    OnClick = ButtonIterarReversoClick
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'
       'DriverID=SQLite')
-    Left = 280
-    Top = 40
+    Left = 104
+    Top = 104
   end
   object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
-    Left = 336
-    Top = 96
+    Left = 160
+    Top = 160
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 384
-    Top = 160
+    Left = 208
+    Top = 224
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 288
-    Top = 168
+    Left = 112
+    Top = 232
   end
 end

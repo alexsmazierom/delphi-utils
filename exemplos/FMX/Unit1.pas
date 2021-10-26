@@ -14,7 +14,7 @@ uses
   DelphiUtils.Hub;
 
 type
-  TForm10 = class(TForm)
+  TForm1 = class(TForm)
     ButtonUsarStringList: TButton;
     ButtonUsarFDQuery: TButton;
     StatusBar1: TStatusBar;
@@ -22,9 +22,13 @@ type
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     FDQuery1: TFDQuery;
+    ButtonIterar: TButton;
+    ButtonIterarReverso: TButton;
     procedure FormCreate(Sender: TObject);
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
+    procedure ButtonIterarClick(Sender: TObject);
+    procedure ButtonIterarReversoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,13 +36,13 @@ type
   end;
 
 var
-  Form10: TForm10;
+  Form1: TForm1;
 
 implementation
 
 {$R *.fmx}
 
-procedure TForm10.FormCreate(Sender: TObject);
+procedure TForm1.FormCreate(Sender: TObject);
 const
   C_DML_ADD_TEMPLATE = 'insert into COMPONENTE values (''%s'', %d, ''%s'')';
 var
@@ -66,7 +70,7 @@ begin
     end;
 end;
 
-procedure TForm10.ButtonUsarStringListClick(Sender: TObject);
+procedure TForm1.ButtonUsarStringListClick(Sender: TObject);
 var
   LItens: Integer;
 begin
@@ -90,7 +94,7 @@ begin
   ShowMessageFmt('Quantidade itens na lista: %d.', [LItens]);
 end;
 
-procedure TForm10.ButtonUsarFDQueryClick(Sender: TObject);
+procedure TForm1.ButtonUsarFDQueryClick(Sender: TObject);
 var
   LEncontrouComponente: Boolean;
   LNomeComponente: string;
@@ -111,6 +115,40 @@ begin
     end);
 
   ShowMessageFmt('Componente "%s" encontrado: %s', [LNomeComponente, BoolToStr(LEncontrouComponente, True)]);
+end;
+
+procedure TForm1.ButtonIterarClick(Sender: TObject);
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  // for I := 1 to 10 do
+
+  TMetodosAnonimosUtil.Iterar(1, 10,
+    procedure(I: Int64)
+    begin
+      Inc(LIteracoes);
+    end);
+
+  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
+end;
+
+procedure TForm1.ButtonIterarReversoClick(Sender: TObject);
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  // for I := 10 downto 1 do
+
+  TMetodosAnonimosUtil.IterarReverso(10, 1,
+    procedure(I: Int64)
+    begin
+      Inc(LIteracoes);
+    end);
+
+  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
 end;
 
 initialization

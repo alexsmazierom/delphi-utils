@@ -22,9 +22,13 @@ type
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     StatusBar1: TStatusBar;
     FDQuery1: TFDQuery;
+    ButtonIterar: TButton;
+    ButtonIterarReverso: TButton;
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ButtonIterarClick(Sender: TObject);
+    procedure ButtonIterarReversoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,6 +115,40 @@ begin
     end);
 
   ShowMessageFmt('Componente "%s" encontrado: %s', [LNomeComponente, BoolToStr(LEncontrouComponente, True)]);
+end;
+
+procedure TForm1.ButtonIterarClick(Sender: TObject);
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  // for I := 1 to 10 do
+
+  TMetodosAnonimosUtil.Iterar(1, 10,
+    procedure(I: Int64)
+    begin
+      Inc(LIteracoes);
+    end);
+
+  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
+end;
+
+procedure TForm1.ButtonIterarReversoClick(Sender: TObject);
+var
+  LIteracoes: Integer;
+begin
+  LIteracoes := 0;
+
+  // for I := 10 downto 1 do
+
+  TMetodosAnonimosUtil.IterarReverso(10, 1,
+    procedure(I: Int64)
+    begin
+      Inc(LIteracoes);
+    end);
+
+  ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
 end;
 
 initialization
