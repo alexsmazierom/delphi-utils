@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1'
   ClientHeight = 416
-  ClientWidth = 847
+  ClientWidth = 919
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -21,7 +21,7 @@ object Form1: TForm1
   end
   object ButtonUsarFDQuery: TButton
     Position.X = 24.000000000000000000
-    Position.Y = 56.000000000000000000
+    Position.Y = 64.000000000000000000
     Size.Width = 193.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
@@ -32,7 +32,7 @@ object Form1: TForm1
   object StatusBar1: TStatusBar
     Position.Y = 394.000000000000000000
     ShowSizeGrip = True
-    Size.Width = 847.000000000000000000
+    Size.Width = 919.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -49,7 +49,7 @@ object Form1: TForm1
   end
   object ButtonIterarReverso: TButton
     Position.X = 240.000000000000000000
-    Position.Y = 56.000000000000000000
+    Position.Y = 64.000000000000000000
     Size.Width = 233.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
@@ -60,7 +60,7 @@ object Form1: TForm1
   object GroupBox1: TGroupBox
     Position.X = 240.000000000000000000
     Position.Y = 104.000000000000000000
-    Size.Width = 433.000000000000000000
+    Size.Width = 401.000000000000000000
     Size.Height = 65.000000000000000000
     Size.PlatformDefault = False
     Text = ' TMetodosAnonimosUtil.Iterar (incrementado 5) '
@@ -69,20 +69,50 @@ object Form1: TForm1
       Orientation = Horizontal
       Position.X = 16.000000000000000000
       Position.Y = 26.000000000000000000
-      Size.Width = 330.000000000000000000
+      Size.Width = 305.000000000000000000
       Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
     end
     object ButtonIterarIncremento5: TButton
-      Position.X = 355.000000000000000000
+      Position.X = 331.000000000000000000
       Position.Y = 24.000000000000000000
-      Size.Width = 64.000000000000000000
+      Size.Width = 54.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Iniciar'
       OnClick = ButtonIterarIncremento5Click
     end
+  end
+  object ButtonStringDeLetras: TButton
+    Position.X = 656.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 241.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 12
+    Text = 'TExpressoesRegularesUtil.StringDeLetras'
+    OnClick = ButtonStringDeLetrasClick
+  end
+  object ButtonStringDeDigitos: TButton
+    Position.X = 656.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 241.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 11
+    Text = 'TExpressoesRegularesUtil.StringDeDigitos'
+    OnClick = ButtonStringDeDigitosClick
+  end
+  object ButtonRemoverDigitos: TButton
+    Position.X = 656.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 241.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    Text = 'TExpressoesRegularesUtil.RemoverDigitos'
+    OnClick = ButtonRemoverDigitosClick
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1 - ExemploVCL_Deplhi_Utils.d'
   ClientHeight = 324
-  ClientWidth = 736
+  ClientWidth = 846
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,7 +25,7 @@ object Form1: TForm1
   end
   object ButtonUsarFDQuery: TButton
     Left = 16
-    Top = 55
+    Top = 63
     Width = 177
     Height = 25
     Caption = 'TGenericosUtil.Usar TFDQuery'
@@ -35,10 +35,10 @@ object Form1: TForm1
   object StatusBar1: TStatusBar
     Left = 0
     Top = 305
-    Width = 736
+    Width = 846
     Height = 19
     Panels = <>
-    ExplicitWidth = 580
+    ExplicitWidth = 736
   end
   object ButtonIterar: TButton
     Left = 208
@@ -51,7 +51,7 @@ object Form1: TForm1
   end
   object ButtonIterarReverso: TButton
     Left = 208
-    Top = 55
+    Top = 63
     Width = 209
     Height = 25
     Caption = 'TMetodosAnonimosUtil.IterarReverso'
@@ -81,6 +81,33 @@ object Form1: TForm1
       TabOrder = 1
       OnClick = ButtonIterarIncremento5Click
     end
+  end
+  object ButtonStringDeLetras: TButton
+    Left = 592
+    Top = 24
+    Width = 241
+    Height = 25
+    Caption = 'TExpressoesRegularesUtil.StringDeLetras'
+    TabOrder = 6
+    OnClick = ButtonStringDeLetrasClick
+  end
+  object ButtonStringDeDigitos: TButton
+    Left = 592
+    Top = 63
+    Width = 241
+    Height = 25
+    Caption = 'TExpressoesRegularesUtil.StringDeDigitos'
+    TabOrder = 7
+    OnClick = ButtonStringDeDigitosClick
+  end
+  object ButtonRemoverDigitos: TButton
+    Left = 592
+    Top = 101
+    Width = 241
+    Height = 25
+    Caption = 'TExpressoesRegularesUtil.RemoverDigitos'
+    TabOrder = 8
+    OnClick = ButtonRemoverDigitosClick
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

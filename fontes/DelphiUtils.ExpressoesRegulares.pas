@@ -28,39 +28,39 @@ type
     class function RemoverSimbolos(const ATexto: string; const ASubstituirPor: string = ''): string; static;
 
     /// <summary>
-    ///   Verifica se amostra coincide com letras no geral: maiúsculas e/ou minúsculas com ou sem acentuação
+    ///   Verifica se texto coincide com letras no geral: maiúsculas e/ou minúsculas com ou sem acentuação
     /// </summary>
-    class function StringDeLetras(const Amostra: string): Boolean; static;
+    class function StringDeLetras(const ATexto: string): Boolean; static;
 
     /// <summary>
-    ///   Verifica se amostra coincide com letras minúsculas somente
+    ///   Verifica se texto coincide com letras minúsculas somente
     /// </summary>
-    class function StringDeLetrasMinusculas(const Amostra: string): Boolean; static;
+    class function StringDeLetrasMinusculas(const ATexto: string): Boolean; static;
 
     /// <summary>
-    ///   Verifica se amostra coincide com letras maiúsculas somente
+    ///   Verifica se texto coincide com letras maiúsculas somente
     /// </summary>
-    class function StringDeLetrasMaiusculas(const Amostra: string): Boolean; static;
+    class function StringDeLetrasMaiusculas(const ATexto: string): Boolean; static;
 
     /// <summary>
-    ///   Verifica se amostra coincide com digitos (0 a 9) somente
+    ///   Verifica se texto coincide com digitos (0 a 9) somente
     /// </summary>
-    class function StringDeDigitos(const Amostra: string): Boolean; static;
+    class function StringDeDigitos(const ATexto: string): Boolean; static;
 
     /// <summary>
     ///   Verifica se texto coincide com caracteres que não podem compor uma palavra, símbolos
     /// </summary>
-    class function StringDeSimbolos(const Amostra: string): Boolean; static;
+    class function StringDeSimbolos(const ATexto: string): Boolean; static;
 
     /// <summary>
     ///   Verifica se texto coincide com caracteres/símbolos de uma lista pré-definida, permitida
     /// </summary>
-    class function StringDeSimbolosPreDefinidos(const Amostra: string): Boolean; static;
+    class function StringDeSimbolosPreDefinidos(const ATexto: string): Boolean; static;
 
     /// <summary>
     ///   Verifica se texto é alfanumérico: contem letras e/ou digitos
     /// </summary>
-    class function StringAlfanumerica(const Amostra: string): Boolean; static;
+    class function StringAlfanumerica(const ATexto: string): Boolean; static;
   end;
 
 implementation
@@ -85,45 +85,45 @@ begin
   Result := TRegEx.Replace(ATexto, '[\W]', ASubstituirPor);
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringDeLetras(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringDeLetras(const ATexto: string): Boolean;
 begin
-  Result := TRegEx.IsMatch(Amostra, '\p{L}') and (not StringDeDigitos(Amostra)) and
-    (not StringDeSimbolosPreDefinidos(Amostra)); (* /^[a-zA-Z\u00C0-\u024F]+$/g *)
+  Result := TRegEx.IsMatch(ATexto, '\p{L}') and (not StringDeDigitos(ATexto)) and
+    (not StringDeSimbolosPreDefinidos(ATexto)); (* /^[a-zA-Z\u00C0-\u024F]+$/g *)
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringDeLetrasMinusculas(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringDeLetrasMinusculas(const ATexto: string): Boolean;
 begin
-  Result := TRegEx.IsMatch(Amostra, '\p{Ll}'); (* /^[a-z\u00DE-\u00F6\u00F8-\u00FF]+$/g *)
+  Result := TRegEx.IsMatch(ATexto, '\p{Ll}'); (* /^[a-z\u00DE-\u00F6\u00F8-\u00FF]+$/g *)
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringDeLetrasMaiusculas(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringDeLetrasMaiusculas(const ATexto: string): Boolean;
 begin
-  Result := TRegEx.IsMatch(Amostra, '\p{Lu}'); (* /^[A-Z\u00C0-\u00D6\u00D8-\u00DD]+$/g *)
+  Result := TRegEx.IsMatch(ATexto, '\p{Lu}'); (* /^[A-Z\u00C0-\u00D6\u00D8-\u00DD]+$/g *)
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringDeDigitos(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringDeDigitos(const ATexto: string): Boolean;
 begin
-  Result := TRegEx.IsMatch(Amostra, '[\d]'); (* /^[\d]+$/g *)
+  Result := TRegEx.IsMatch(ATexto, '[\d]'); (* /^[\d]+$/g *)
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringDeSimbolos(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringDeSimbolos(const ATexto: string): Boolean;
 begin
-  Result := (not StringDeLetras(Amostra)) and (not StringDeDigitos(Amostra)); (* /^[\W]+$/g *)
+  Result := (not StringDeLetras(ATexto)) and (not StringDeDigitos(ATexto)); (* /^[\W]+$/g *)
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringDeSimbolosPreDefinidos(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringDeSimbolosPreDefinidos(const ATexto: string): Boolean;
 begin
-  Result := TRegEx.IsMatch(Amostra, C_EXPRESSAO_SIMBOLOS_VALIDOS);
+  Result := TRegEx.IsMatch(ATexto, C_EXPRESSAO_SIMBOLOS_VALIDOS);
 end;
 
-class function TDelphiUtilExpressoesRegulares.StringAlfanumerica(const Amostra: string): Boolean;
+class function TDelphiUtilExpressoesRegulares.StringAlfanumerica(const ATexto: string): Boolean;
 var
   LAmostraSemDigitos, LAmostraSemLetrasSimbolos: string;
 begin
-//  LAmostraSemDigitos := TRegEx.Replace(Amostra, '[\d]', '');
-//  LAmostraSemLetrasSimbolos := TRegEx.Replace( TRegEx.Replace(Amostra, '\p{L}', ''), '[\W]', '');
-  LAmostraSemDigitos := RemoverDigitos(Amostra);
-  LAmostraSemLetrasSimbolos := RemoverSimbolos( RemoverLetras(Amostra) );
+//  LAmostraSemDigitos := TRegEx.Replace(ATexto, '[\d]', '');
+//  LAmostraSemLetrasSimbolos := TRegEx.Replace( TRegEx.Replace(ATexto, '\p{L}', ''), '[\W]', '');
+  LAmostraSemDigitos := RemoverDigitos(ATexto);
+  LAmostraSemLetrasSimbolos := RemoverSimbolos( RemoverLetras(ATexto) );
 
   Result := (StringDeLetras(LAmostraSemDigitos) or LAmostraSemDigitos.IsEmpty) or
             (StringDeDigitos(LAmostraSemLetrasSimbolos) or LAmostraSemLetrasSimbolos.IsEmpty);

@@ -27,12 +27,18 @@ type
     GroupBox1: TGroupBox;
     ProgressBar1: TProgressBar;
     ButtonIterarIncremento5: TButton;
+    ButtonStringDeLetras: TButton;
+    ButtonStringDeDigitos: TButton;
+    ButtonRemoverDigitos: TButton;
     procedure FormCreate(Sender: TObject);
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
     procedure ButtonIterarClick(Sender: TObject);
     procedure ButtonIterarReversoClick(Sender: TObject);
     procedure ButtonIterarIncremento5Click(Sender: TObject);
+    procedure ButtonStringDeLetrasClick(Sender: TObject);
+    procedure ButtonStringDeDigitosClick(Sender: TObject);
+    procedure ButtonRemoverDigitosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -187,6 +193,43 @@ begin
   end;
 
   ShowMessageFmt('Progresso atingiu %.2f%% com %d iterações.', [ProgressBar1.Value, LIteracoes]);
+end;
+
+procedure TForm1.ButtonStringDeLetrasClick(Sender: TObject);
+const
+  C_AMOSTRA_LETRAS_DIGITOS = 'aAzZÇçáÁ2021';
+var
+  LResultado: Boolean;
+begin
+  LResultado := TExpressoesRegularesUtil.StringDeLetras(C_AMOSTRA_LETRAS_DIGITOS);
+
+  // resultado esperado: False (falso)
+  ShowMessageFmt('Amostra "%s" é uma string de letras apenas? %s',
+    [C_AMOSTRA_LETRAS_DIGITOS, BoolToStr(LResultado, True)]);
+end;
+
+procedure TForm1.ButtonStringDeDigitosClick(Sender: TObject);
+const
+  C_AMOSTRA_DIGITOS = '0123456789';
+var
+  LResultado: Boolean;
+begin
+  LResultado := TExpressoesRegularesUtil.StringDeDigitos(C_AMOSTRA_DIGITOS);
+
+  // resultado esperado: True (verdadeiro)
+  ShowMessageFmt('Amostra "%s" é uma string dígitos apenas? %s', [C_AMOSTRA_DIGITOS, BoolToStr(LResultado, True)]);
+end;
+
+procedure TForm1.ButtonRemoverDigitosClick(Sender: TObject);
+const
+  C_TEXTO_COM_DIGITOS = 'Exemplo 2021';
+var
+  LResultado: string;
+begin
+  LResultado := TExpressoesRegularesUtil.RemoverDigitos(C_TEXTO_COM_DIGITOS);
+
+  // resultado esperado: "Exemplo"
+  ShowMessageFmt('Resultado do texto "%s" sem dígitos: %s', [C_TEXTO_COM_DIGITOS, LResultado]);
 end;
 
 initialization
