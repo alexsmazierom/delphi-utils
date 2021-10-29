@@ -139,3 +139,53 @@ begin
   ShowMessageFmt('Número de iterações: %d', [LIteracoes]);
 end;
 ```
+
+### Regular Expressions (RegEx) ou "Expressões Regulares"
+
+Trecho de código de exemplo com método `StringDeLetras(const ATexto: string): Boolean`:
+
+```delphi
+procedure TForm1.Button4Click(Sender: TObject);
+const
+  C_AMOSTRA_LETRAS_DIGITOS = 'aAzZÇçáÁ2021';
+var
+  LResultado: Boolean;
+begin
+  LResultado := TExpressoesRegularesUtil.StringDeLetras(C_AMOSTRA_LETRAS_DIGITOS);
+
+  // resultado esperado: False (falso)
+  ShowMessageFmt('Amostra "%s" é uma string de letras apenas? %s', 
+    [C_AMOSTRA_LETRAS_DIGITOS, BoolToStr(LResultado, True)]);
+end;
+```
+
+Trecho de código de exemplo com método `StringDeDigitos(const ATexto: string): Boolean`:
+
+```delphi
+procedure TForm1.Button5Click(Sender: TObject);
+const
+  C_AMOSTRA_DIGITOS = '0123456789';
+var
+  LResultado: Boolean;
+begin
+  LResultado := TExpressoesRegularesUtil.StringDeDigitos(C_AMOSTRA_DIGITOS);
+
+  // resultado esperado: True (verdadeiro)
+  ShowMessageFmt('Amostra "%s" é uma string dígitos apenas? %s', [C_AMOSTRA_DIGITOS, BoolToStr(LResultado, True)]);
+```
+
+Trecho de código de exemplo com método `RemoverDigitos(const ATexto: string; const ASubstituirPor: string = ''): string`:
+
+```delphi
+procedure TForm1.Button6Click(Sender: TObject);
+const
+  C_TEXTO_COM_DIGITOS = 'Exemplo 2021';
+var
+  LResultado: string;
+begin
+  LResultado := TExpressoesRegularesUtil.RemoverDigitos(C_TEXTO_COM_DIGITOS);
+
+  // resultado esperado: "Exemplo"
+  ShowMessageFmt('Resultado do texto "%s" sem dígitos: %s', [C_TEXTO_COM_DIGITOS, LResultado]);
+end;
+```
