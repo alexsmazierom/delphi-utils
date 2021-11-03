@@ -192,3 +192,26 @@ begin
     [C_TEXTO_COM_DIGITOS, LResultado]);
 end;
 ```
+
+Trecho de código de exemplo com método `EmailValido(const AEmail: string): Boolean`:
+
+```delphi
+procedure TForm1.Button7Click(Sender: TObject);
+var
+  LArrayAmostra: TArray<string>;
+  LAmostra, LResultados: string;
+begin
+  LArrayAmostra := ['nome@', 'nome@provedor.combr', 'nome sobrenome@provedor.com', 'eu@c', '1@1.1', '@provedor', 'nome.provedor.com', 'e@e.co', 'nome@provedor.com.br'];
+  LResultados := 'Resultados da validação da amostra de emails:' + sLineBreak;
+
+  for LAmostra in LArrayAmostra do
+    LResultados := LResultados
+      + ' - '
+      + LAmostra.QuotedString('"')
+      + ': '
+      + IfThen(TExpressoesRegularesUtil.EmailValido(LAmostra), 'válido', 'inválido')
+      + sLineBreak;
+
+  ShowMessage(LResultados);
+end;
+```
