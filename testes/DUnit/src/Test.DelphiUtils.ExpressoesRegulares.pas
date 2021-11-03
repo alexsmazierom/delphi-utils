@@ -38,6 +38,9 @@ type
     procedure testar_metodo_classe_StringDeSimbolos_amostra_letras_minusculas_esperado_False;
     procedure testar_metodo_classe_StringDeSimbolos_amostra_digitos_esperado_False;
     procedure testar_metodo_classe_StringAlfanumerica_amostra_alfanumerica_esperado_True;
+    procedure testar_metodo_classe_RemoverEspacos_amostra_palavras_separadas_esperado_Pos_stringVazia_False;
+    procedure testar_metodo_classe_EmailValido_amostra_email_valido_esperado_True;
+    procedure testar_metodo_classe_EmailValido_amostra_email_invalido_esperado_False;
   end;
 
 implementation
@@ -53,6 +56,8 @@ const
   C_AMOSTRA_LETRAS_MAIUSCULAS_DIGITOS = 'AÁÄÃZ2021';
   C_AMOSTRA_DIGITOS = '0123456789';
   C_AMOSTRA_SIMBOLOS = '.-/,''"~`@#$%&*()=[]{};<>?\';  // [-!$%^&*()_+|~=`´{}\[\]:";''<>?,.\/@#\\];
+  C_AMOSTRA_EMAIL = 'nome@provedor.com';
+  C_AMOSTRA_EMAIL_INVALIDO = '@provedor.com';
 
 { TestCase_classe_TDelphiUtilExpressoesRegulares }
 
@@ -186,6 +191,30 @@ procedure TestCase_classe_TDelphiUtilExpressoesRegulares.testar_metodo_classe_St
 begin
   CheckTrue( TExpressoesRegularesUtil.StringAlfanumerica(C_AMOSTRA_ALFANUMERICA),
              'testar_metodo_classe_StringAlfanumerica_amostra_alfanumerica_esperado_True: falhou' );
+end;
+
+procedure TestCase_classe_TDelphiUtilExpressoesRegulares.testar_metodo_classe_RemoverEspacos_amostra_palavras_separadas_esperado_Pos_stringVazia_False;
+const
+  C_PALAVRAS = ' Delphi    CE  10.3.3   ' + 'Rio';
+var
+  LResultado: string;
+begin
+//  LResultado := C_PALAVRAS.Replace(' ',''); { obteve mesmo resultado }
+  LResultado := TExpressoesRegularesUtil.RemoverEspacos(C_PALAVRAS);
+  CheckFalse( Pos(' ', LResultado) = -1,
+              'testar_metodo_classe_RemoverEspacos_amostra_palavras_separadas_esperado_Pos_stringVazia_False: falhou!' )
+end;
+
+procedure TestCase_classe_TDelphiUtilExpressoesRegulares.testar_metodo_classe_EmailValido_amostra_email_valido_esperado_True;
+begin
+  CheckTrue( TExpressoesRegularesUtil.EmailValido(C_AMOSTRA_EMAIL),
+             'testar_metodo_classe_EmailValido_amostra_email_valido_esperado_True: falhou' );
+end;
+
+procedure TestCase_classe_TDelphiUtilExpressoesRegulares.testar_metodo_classe_EmailValido_amostra_email_invalido_esperado_False;
+begin
+  CheckFalse( TExpressoesRegularesUtil.EmailValido(C_AMOSTRA_EMAIL_INVALIDO),
+              'testar_metodo_classe_EmailValido_amostra_email_invalido_esperado_False: falhou' );
 end;
 
 initialization

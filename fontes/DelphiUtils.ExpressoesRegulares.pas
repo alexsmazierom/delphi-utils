@@ -28,6 +28,11 @@ type
     class function RemoverSimbolos(const ATexto: string; const ASubstituirPor: string = ''): string; static;
 
     /// <summary>
+    ///   Remover/substituir espacos em branco no texto
+    /// </summary>
+    class function RemoverEspacos(const ATexto: string; const ASubstituirPor: string = ''): string; static;
+
+    /// <summary>
     ///   Verifica se texto coincide com letras no geral: maiúsculas e/ou minúsculas com ou sem acentuação
     /// </summary>
     class function StringDeLetras(const ATexto: string): Boolean; static;
@@ -61,6 +66,8 @@ type
     ///   Verifica se texto é alfanumérico: contem letras e/ou digitos
     /// </summary>
     class function StringAlfanumerica(const ATexto: string): Boolean; static;
+
+    class function EmailValido(const AEmail: string): Boolean; static;
   end;
 
 implementation
@@ -73,6 +80,11 @@ const
 class function TDelphiUtilExpressoesRegulares.RemoverDigitos(const ATexto: string; const ASubstituirPor: string = ''): string;
 begin
   Result := TRegEx.Replace(ATexto, '[\d]', ASubstituirPor);
+end;
+
+class function TDelphiUtilExpressoesRegulares.RemoverEspacos(const ATexto, ASubstituirPor: string): string;
+begin
+  Result := TRegEx.Replace(ATexto, '[\s]', ASubstituirPor);
 end;
 
 class function TDelphiUtilExpressoesRegulares.RemoverLetras(const ATexto: string; const ASubstituirPor: string = ''): string;
@@ -127,6 +139,11 @@ begin
 
   Result := (StringDeLetras(LAmostraSemDigitos) or LAmostraSemDigitos.IsEmpty) or
             (StringDeDigitos(LAmostraSemLetrasSimbolos) or LAmostraSemLetrasSimbolos.IsEmpty);
+end;
+
+class function TDelphiUtilExpressoesRegulares.EmailValido(const AEmail: string): Boolean;
+begin
+  Result := TRegEx.IsMatch(AEmail, '^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 end;
 
 end.

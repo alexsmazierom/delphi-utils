@@ -109,6 +109,15 @@ object Form1: TForm1
     TabOrder = 8
     OnClick = ButtonRemoverDigitosClick
   end
+  object ButtonEmailValido: TButton
+    Left = 592
+    Top = 137
+    Width = 241
+    Height = 25
+    Caption = 'TExpressoesRegularesUtil.EmailValido'
+    TabOrder = 9
+    OnClick = ButtonEmailValidoClick
+  end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'

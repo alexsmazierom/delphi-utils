@@ -3,7 +3,7 @@
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.IOUtils,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, System.IOUtils, System.StrUtils,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
   Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
@@ -30,6 +30,7 @@ type
     ButtonStringDeLetras: TButton;
     ButtonStringDeDigitos: TButton;
     ButtonRemoverDigitos: TButton;
+    ButtonEmailValido: TButton;
     procedure FormCreate(Sender: TObject);
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
@@ -39,6 +40,7 @@ type
     procedure ButtonStringDeLetrasClick(Sender: TObject);
     procedure ButtonStringDeDigitosClick(Sender: TObject);
     procedure ButtonRemoverDigitosClick(Sender: TObject);
+    procedure ButtonEmailValidoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -229,7 +231,26 @@ begin
   LResultado := TExpressoesRegularesUtil.RemoverDigitos(C_TEXTO_COM_DIGITOS);
 
   // resultado esperado: "Exemplo"
-  ShowMessageFmt('Resultado do texto "%s" sem dígitos: %s', [C_TEXTO_COM_DIGITOS, LResultado]);
+  ShowMessageFmt('Resultado do texto "%s" sem dígitos: "%s"', [C_TEXTO_COM_DIGITOS, LResultado]);
+end;
+
+procedure TForm1.ButtonEmailValidoClick(Sender: TObject);
+var
+  LArrayAmostra: TArray<string>;
+  LAmostra, LResultados: string;
+begin
+  LArrayAmostra := ['nome@', 'nome@provedor.combr', 'nome sobrenome@provedor.com', 'eu@c', '1@1.1', '@provedor', 'nome.provedor.com', 'e@e.co', 'nome@provedor.com.br'];
+  LResultados := 'Resultados da validação da amostra de emails:' + sLineBreak;
+
+  for LAmostra in LArrayAmostra do
+    LResultados := LResultados
+      + ' - '
+      + LAmostra.QuotedString('"')
+      + ': '
+      + IfThen(TExpressoesRegularesUtil.EmailValido(LAmostra), 'válido', 'inválido')
+      + sLineBreak;
+
+  ShowMessage(LResultados);
 end;
 
 initialization

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, System.IOUtils,
-  System.Generics.Collections,
+  System.Generics.Collections, System.StrUtils,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls,
   Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
@@ -31,6 +31,7 @@ type
     ButtonStringDeLetras: TButton;
     ButtonStringDeDigitos: TButton;
     ButtonRemoverDigitos: TButton;
+    ButtonEmailValido: TButton;
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -40,6 +41,7 @@ type
     procedure ButtonStringDeLetrasClick(Sender: TObject);
     procedure ButtonStringDeDigitosClick(Sender: TObject);
     procedure ButtonRemoverDigitosClick(Sender: TObject);
+    procedure ButtonEmailValidoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -231,6 +233,25 @@ begin
 
   // resultado esperado: "Exemplo"
   ShowMessageFmt('Resultado do texto "%s" sem dígitos: "%s"', [C_TEXTO_COM_DIGITOS, LResultado]);
+end;
+
+procedure TForm1.ButtonEmailValidoClick(Sender: TObject);
+var
+  LArrayAmostra: TArray<string>;
+  LAmostra, LResultados: string;
+begin
+  LArrayAmostra := ['nome@', 'nome@provedor.combr', 'nome sobrenome@provedor.com', 'eu@c', '1@1.1', '@provedor', 'nome.provedor.com', 'e@e.co', 'nome@provedor.com.br'];
+  LResultados := 'Resultados da validação da amostra de emails:' + sLineBreak;
+
+  for LAmostra in LArrayAmostra do
+    LResultados := LResultados
+      + ' - '
+      + LAmostra.QuotedString('"')
+      + ': '
+      + IfThen(TExpressoesRegularesUtil.EmailValido(LAmostra), 'válido', 'inválido')
+      + sLineBreak;
+
+  ShowMessage(LResultados);
 end;
 
 initialization
