@@ -144,6 +144,26 @@ type
     /// </param>
     class procedure IterarReverso(APosicaoInicial: Single; const APosicaoParada: Single; AProc: TProc<Single>;
       const ADecremento: Cardinal = 1); overload; static;
+
+    /// <summary>
+    ///   <p>Inspirada no Map do Javascript, este método anônimo utiliza arrays de entrada/saída de tipos genéricos,
+    ///   e uma função de callback que será aplicada para cada elemento do array de entrada retornando um novo array de saída</p>
+    /// </summary>
+    /// <param name="ADadosEntrada">
+    ///   array de entrada de tipo genérico com os elementos
+    /// </param>
+    /// <param name="AFuncManipulacao">
+    ///   callback ou função anônima onde o parâmetro e o retorno são do mesmo tipo do array de entrada
+    ///   e que será aplicada a todos os elementos
+    /// </param>
+    /// <returns>
+    ///   retorna array com elementos transformados pela função de manipulação
+    /// </returns>
+    class function Map<T>(ADadosEntrada: TArray<T>; AFuncManipulacao: TFunc<T, T>): TArray<T>; static;
+
+    class function Reduce<T>(ADadosEntrada: TArray<T>; AFuncTotalizacao: TFunc<T, T, T>; AValorInicial: T): T; static;
+
+    class function Filter<T>(ADadosEntrada: TArray<T>; AFuncFiltragem: TFunc<T, Boolean>): TArray<T>; static;
   end;
 
 implementation
@@ -219,6 +239,41 @@ begin
   while (APosicaoInicial >= APosicaoParada) do begin
     APosicaoInicial := APosicaoInicial - ADecremento;
     AProc(APosicaoInicial);
+  end;
+end;
+
+class function TDelphiUtilMetodosAnonimos.Map<T>(ADadosEntrada: TArray<T>; AFuncManipulacao: TFunc<T, T>): TArray<T>;
+var
+  I: Integer;
+begin
+  SetLength(Result, Length(ADadosEntrada));
+  for I := 0 to Length(ADadosEntrada) - 1 do
+    Result[I] := AFuncManipulacao(ADadosEntrada[I]);
+End;
+
+class function TDelphiUtilMetodosAnonimos.Reduce<T>(ADadosEntrada: TArray<T>; AFuncTotalizacao: TFunc<T, T, T>; AValorInicial: T): T;
+var
+  I: T;
+begin
+  Result := AValorInicial;
+  for I in ADadosEntrada do
+    Result := AFuncTotalizacao(Result, I);
+end;
+
+class function TDelphiUtilMetodosAnonimos.Filter<T>(ADadosEntrada: TArray<T>; AFuncFiltragem: TFunc<T, Boolean>): TArray<T>;
+var
+  I: Integer;
+  LAuxLista: TList<T>;
+begin
+  LAuxLista := TList<T>.Create;
+  try
+    for I := 0 to Length(ADadosEntrada) - 1 do begin
+      if AFuncFiltragem(ADadosEntrada[I]) = True then
+        LAuxLista.Add(ADadosEntrada[I]);
+    end;
+    Result := LAuxLista.ToArray;
+  finally
+    LAuxLista.Free;
   end;
 end;
 

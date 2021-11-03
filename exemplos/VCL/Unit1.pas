@@ -32,6 +32,9 @@ type
     ButtonStringDeDigitos: TButton;
     ButtonRemoverDigitos: TButton;
     ButtonEmailValido: TButton;
+    ButtonArrayMapJS: TButton;
+    ButtonArrayReduceJS: TButton;
+    ButtonArrayFilterJS: TButton;
     procedure ButtonUsarStringListClick(Sender: TObject);
     procedure ButtonUsarFDQueryClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -42,6 +45,9 @@ type
     procedure ButtonStringDeDigitosClick(Sender: TObject);
     procedure ButtonRemoverDigitosClick(Sender: TObject);
     procedure ButtonEmailValidoClick(Sender: TObject);
+    procedure ButtonArrayMapJSClick(Sender: TObject);
+    procedure ButtonArrayReduceJSClick(Sender: TObject);
+    procedure ButtonArrayFilterJSClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -238,20 +244,95 @@ end;
 procedure TForm1.ButtonEmailValidoClick(Sender: TObject);
 var
   LArrayAmostra: TArray<string>;
-  LAmostra, LResultados: string;
+  LAmostra, LMensagem: string;
 begin
   LArrayAmostra := ['nome@', 'nome@provedor.combr', 'nome sobrenome@provedor.com', 'eu@c', '1@1.1', '@provedor', 'nome.provedor.com', 'e@e.co', 'nome@provedor.com.br'];
-  LResultados := 'Resultados da validação da amostra de emails:' + sLineBreak;
+  LMensagem := 'Resultados da validação da amostra de emails:' + sLineBreak;
 
   for LAmostra in LArrayAmostra do
-    LResultados := LResultados
+    LMensagem := LMensagem
       + ' - '
       + LAmostra.QuotedString('"')
       + ': '
       + IfThen(TExpressoesRegularesUtil.EmailValido(LAmostra), 'válido', 'inválido')
       + sLineBreak;
 
-  ShowMessage(LResultados);
+  ShowMessage(LMensagem);
+end;
+
+procedure TForm1.ButtonArrayMapJSClick(Sender: TObject);
+var
+  LArrayEntrada, LArraySaida: TArray<Currency>;
+  LMensagem: string;
+begin
+  LArrayEntrada := [10.0, 20.0, 30.0];
+
+  LArraySaida := TMetodosAnonimosUtil.Map<Currency>(
+    LArrayEntrada,
+    function(Elemento: Currency): Currency
+    begin
+      Result := Elemento * 1.1;
+    end);
+
+  LMensagem :=
+    Format('Array de entrada: [%.1f | %.1f | %.1f]', [ LArrayEntrada[0], LArrayEntrada[1], LArrayEntrada[2] ])
+    + sLineBreak
+    + Format('Array de saída*: [%.1f | %.1f | %.1f]', [ LArraySaida[0], LArraySaida[1], LArraySaida[2] ])
+    + sLineBreak
+    + sLineBreak
+    + '(*) ajuste de 10%';
+  ShowMessage(LMensagem);
+end;
+
+procedure TForm1.ButtonArrayReduceJSClick(Sender: TObject);
+var
+  LArrayEntrada: TArray<Currency>;
+  LSoma: Currency;
+  LMensagem: string;
+begin
+  LArrayEntrada := [1.99, 9.99, 1041.17];
+
+  LSoma := TMetodosAnonimosUtil.Reduce<Currency>(
+    LArrayEntrada,
+    function(ValorAcumulado, Item: Currency): Currency
+    begin
+      Result := ValorAcumulado + Item;
+    end,
+    0.00);
+
+  LMensagem :=
+    Format('Soma: %.2f + %.2f + %.2f = %.2f', [ LArrayEntrada[0], LArrayEntrada[1], LArrayEntrada[2], LSoma ]);
+
+  ShowMessage(LMensagem);
+end;
+
+procedure TForm1.ButtonArrayFilterJSClick(Sender: TObject);
+var
+  I: Integer;
+  LMensagem, LNumeros, LPares: string;
+  LArrayEntrada, LAarraySaida: TArray<Integer>;
+begin
+  LArrayEntrada := [1,2,3,4,5,7,9,10,11];
+
+  for I := Low(LArrayEntrada) to High(LArrayEntrada) do
+    LNumeros := LNumeros + IfThen(I>0,', ','') + LArrayEntrada[I].ToString;
+
+  LAarraySaida := TMetodosAnonimosUtil.Filter<Integer>(
+    LArrayEntrada,
+    function(Item: Integer): Boolean
+    begin
+      Result := Item mod 2 = 0;
+    end);
+
+  for I := Low(LAarraySaida) to High(LAarraySaida) do
+    LPares := LPares + IfThen(I>0,', ','') + LAarraySaida[I].ToString;
+
+  LMensagem :=
+    'Array de entrada : [' + LNumeros + ']'
+    + sLineBreak
+    + 'Array com filtro de pares: [' + LPares + ']';
+
+  ShowMessage(LMensagem);
 end;
 
 initialization

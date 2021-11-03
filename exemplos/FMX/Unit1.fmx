@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Form1 - ExemploFMX_Delphi_Uitils'
   ClientHeight = 416
   ClientWidth = 919
   FormFactor.Width = 320
@@ -53,7 +53,7 @@ object Form1: TForm1
     Size.Width = 233.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 8
+    TabOrder = 11
     Text = 'TMetodosAnonimosUtil.IterarReverso'
     OnClick = ButtonIterarReversoClick
   end
@@ -64,7 +64,7 @@ object Form1: TForm1
     Size.Height = 65.000000000000000000
     Size.PlatformDefault = False
     Text = ' TMetodosAnonimosUtil.Iterar (incrementado 5) '
-    TabOrder = 9
+    TabOrder = 12
     object ProgressBar1: TProgressBar
       Orientation = Horizontal
       Position.X = 16.000000000000000000
@@ -90,7 +90,7 @@ object Form1: TForm1
     Size.Width = 241.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 13
+    TabOrder = 16
     Text = 'TExpressoesRegularesUtil.StringDeLetras'
     OnClick = ButtonStringDeLetrasClick
   end
@@ -100,7 +100,7 @@ object Form1: TForm1
     Size.Width = 241.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 12
+    TabOrder = 15
     Text = 'TExpressoesRegularesUtil.StringDeDigitos'
     OnClick = ButtonStringDeDigitosClick
   end
@@ -110,7 +110,7 @@ object Form1: TForm1
     Size.Width = 241.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 11
+    TabOrder = 14
     Text = 'TExpressoesRegularesUtil.RemoverDigitos'
     OnClick = ButtonRemoverDigitosClick
   end
@@ -120,9 +120,39 @@ object Form1: TForm1
     Size.Width = 241.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 10
+    TabOrder = 13
     Text = 'TExpressoesRegularesUtil.EmailValido'
     OnClick = ButtonEmailValidoClick
+  end
+  object ButtonArrayMapJS: TButton
+    Position.X = 240.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    Text = 'TMetodosAnonimosUtil.Map'
+    OnClick = ButtonArrayMapJSClick
+  end
+  object ButtonArrayReduceJS: TButton
+    Position.X = 240.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    Text = 'TMetodosAnonimosUtil.Reduce'
+    OnClick = ButtonArrayReduceJSClick
+  end
+  object ButtonArrayFilterJS: TButton
+    Position.X = 240.000000000000000000
+    Position.Y = 264.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    Text = 'TMetodosAnonimosUtil.Filter'
+    OnClick = ButtonArrayFilterJSClick
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

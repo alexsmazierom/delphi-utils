@@ -67,6 +67,9 @@ type
     /// </summary>
     class function StringAlfanumerica(const ATexto: string): Boolean; static;
 
+    /// <summary>
+    ///   Verifica se email é válido, atendendo requisitos de tamanho mínimo, caracteres utilizados, prefixos e sufixos
+    /// </summary>
     class function EmailValido(const AEmail: string): Boolean; static;
   end;
 

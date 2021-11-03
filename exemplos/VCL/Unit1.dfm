@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1 - ExemploVCL_Deplhi_Utils.d'
+  Caption = 'Form1 - ExemploVCL_Dephi_Utils'
   ClientHeight = 324
   ClientWidth = 846
   Color = clBtnFace
@@ -117,6 +117,33 @@ object Form1: TForm1
     Caption = 'TExpressoesRegularesUtil.EmailValido'
     TabOrder = 9
     OnClick = ButtonEmailValidoClick
+  end
+  object ButtonArrayMapJS: TButton
+    Left = 208
+    Top = 176
+    Width = 209
+    Height = 25
+    Caption = 'TMetodosAnonimosUtil.Map'
+    TabOrder = 10
+    OnClick = ButtonArrayMapJSClick
+  end
+  object ButtonArrayReduceJS: TButton
+    Left = 208
+    Top = 216
+    Width = 209
+    Height = 25
+    Caption = 'TMetodosAnonimosUtil.Reduce'
+    TabOrder = 11
+    OnClick = ButtonArrayReduceJSClick
+  end
+  object ButtonArrayFilterJS: TButton
+    Left = 208
+    Top = 256
+    Width = 209
+    Height = 25
+    Caption = 'TMetodosAnonimosUtil.Filter'
+    TabOrder = 12
+    OnClick = ButtonArrayFilterJSClick
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

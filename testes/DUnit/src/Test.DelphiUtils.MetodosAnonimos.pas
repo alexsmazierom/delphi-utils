@@ -26,6 +26,10 @@ type
     procedure testar_metodo_classe_IterarReverso_de0a0_verificar_1_iteracao_esperada;
     procedure testar_metodo_classe_IterarReverso_de9a0_adicionando_TList_Integer_verificar_count;
     procedure testar_metodo_classe_IterarReverso_de9a0_decrementando_2_verificar_5_iteracoes_esperadas;
+    procedure testar_metodo_classe_Map_Javascript_manipulando_array_Integer_quadrado;
+    procedure testar_metodo_classe_Map_Javascript_manipulando_array_Currency_reajustado_10_porcento;
+    procedure testar_metodo_classe_Reduce_Javascript_somando_array_Currency;
+    procedure testar_metodo_classe_Filter_Javascript_filtrando_numeros_pares_array_Integer;
   end;
 
 implementation
@@ -211,6 +215,77 @@ begin
     end, C_DECREMENTO);
 
   CheckEquals(C_ESPERADO, LAtual, 'testar_metodo_classe_IterarReverso_de9a0_decrementando_2_verificar_5_iteracoes_esperadas: falhou');
+end;
+
+procedure TestCase_classe_TDelphiUtilMetodosAnonimos.testar_metodo_classe_Map_Javascript_manipulando_array_Integer_quadrado;
+var
+  LArrayEntrada, LArraySaida: TArray<Integer>;
+begin
+  LArrayEntrada := [1, 2, 3];
+
+  LArraySaida := TMetodosAnonimosUtil.Map<Integer>(
+    LArrayEntrada,
+    function(Elemento: Integer): Integer
+    begin
+      Result := Elemento * 2;
+    end);
+
+  CheckTrue( (LArraySaida[0] = 1) and (LArraySaida[1] = 4) and (LArraySaida[2] = 6),
+             'testar_metodo_classe_Map_Javascript_manipulando_array_Integer_quadrado: falhou' );
+end;
+
+procedure TestCase_classe_TDelphiUtilMetodosAnonimos.testar_metodo_classe_Map_Javascript_manipulando_array_Currency_reajustado_10_porcento;
+var
+  LArrayEntrada, LArraySaida: TArray<Currency>;
+begin
+  LArrayEntrada := [10.0, 20.0, 30.0];
+
+  LArraySaida := TMetodosAnonimosUtil.Map<Currency>(
+    LArrayEntrada,
+    function(Elemento: Currency): Currency
+    begin
+      Result := Elemento * 1.1;
+    end);
+
+  CheckTrue( (LArraySaida[0] = 11) and (LArraySaida[1] = 22) and (LArraySaida[2] = 33),
+             'testar_metodo_classe_Map_Javascript_manipulando_array_Integer_quadrado: falhou' );
+end;
+
+procedure TestCase_classe_TDelphiUtilMetodosAnonimos.testar_metodo_classe_Reduce_Javascript_somando_array_Currency;
+const
+  C_SOMA_ESPERADO = 1053.15;
+var
+  LArrayEntrada: TArray<Currency>;
+  LResultado: Currency;
+begin
+  LArrayEntrada := [1.99, 9.99, 1041.17];
+
+  LResultado := TMetodosAnonimosUtil.Reduce<Currency>(
+    LArrayEntrada,
+    function(ValorAcumulado, Item: Currency): Currency
+    begin
+      Result := ValorAcumulado + Item;
+    end,
+    0.00);
+
+  CheckEquals(C_SOMA_ESPERADO, LResultado, 'testar_metodo_classe_Reduce_Javascript_somando_array_Currency: falhou');
+end;
+
+procedure TestCase_classe_TDelphiUtilMetodosAnonimos.testar_metodo_classe_Filter_Javascript_filtrando_numeros_pares_array_Integer;
+var
+  LArrayEntrada, LAarraySaida: TArray<Integer>;
+begin
+  LArrayEntrada := [1,2,3,4,5,7,9,10,11];
+
+  LAarraySaida := TMetodosAnonimosUtil.Filter<Integer>(
+    LArrayEntrada,
+    function(Item: Integer): Boolean
+    begin
+      Result := Item mod 2 = 0;
+    end);
+
+  Check( (LAarraySaida[0] = 2) and (LAarraySaida[1] = 4) and (LAarraySaida[2] = 10),
+         'testar_metodo_classe_Filter_Javascript_filtrando_numeros_pares_array_Integer: falhou' );
 end;
 
 initialization
