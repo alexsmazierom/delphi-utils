@@ -1,7 +1,7 @@
 # delphi-utils
-Classes utilitárias usando os recursos mais atuais da linguagem Delphi.
+Classes utilitárias usando os recursos mais atuais da linguagem Delphi para simplificar aplicações do dia-a-dia, com código limpo, centralizado, de baixo aclopamento e reutilizável.
 
-IDE utilizada para compilação e testes: Delphi 10.3 CE (Community Edition)
+IDE utilizada para compilação e testes: Delphi 10.3 CE (Community Edition) com middleware FireDAC.
 
 ## Instalação
 Adicionar o caminho completo da pasta fontes, ex.: `C:\delphi-utils-main\fontes` ao Library Path da IDE Delphi (Tools > Options > Language > Delphi > Library).
