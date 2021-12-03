@@ -177,8 +177,8 @@ begin
   if AIncremento = 0 then Exit;
 
   while (APosicaoInicial <= APosicaoParada) do begin
-    Inc(APosicaoInicial, AIncremento);
     AProc(APosicaoInicial);
+    Inc(APosicaoInicial, AIncremento);
   end;
 end;
 
@@ -189,8 +189,8 @@ begin
   if AIncremento = 0 then Exit;
 
   while (APosicaoInicial <= APosicaoParada) do begin
-    Inc(APosicaoInicial, AIncremento);
     AProc(APosicaoInicial);
+    Inc(APosicaoInicial, AIncremento);
   end;
 end;
 
@@ -201,8 +201,8 @@ begin
   if AIncremento = 0 then Exit;
 
   while (APosicaoInicial <= APosicaoParada) do begin
-    APosicaoInicial := APosicaoInicial + AIncremento;
     AProc(APosicaoInicial);
+    APosicaoInicial := APosicaoInicial + AIncremento;
   end;
 end;
 
@@ -213,8 +213,8 @@ begin
   if ADecremento = 0 then Exit;
 
   while (APosicaoInicial >= APosicaoParada) do begin
-    Dec(APosicaoInicial, ADecremento);
     AProc(APosicaoInicial);
+    Dec(APosicaoInicial, ADecremento);
   end;
 end;
 
@@ -225,8 +225,8 @@ begin
   if ADecremento = 0 then Exit;
 
   while (APosicaoInicial >= APosicaoParada) do begin
-    Dec(APosicaoInicial, ADecremento);
     AProc(APosicaoInicial);
+    Dec(APosicaoInicial, ADecremento);
   end;
 end;
 
@@ -237,8 +237,8 @@ begin
   if ADecremento = 0 then Exit;
 
   while (APosicaoInicial >= APosicaoParada) do begin
-    APosicaoInicial := APosicaoInicial - ADecremento;
     AProc(APosicaoInicial);
+    APosicaoInicial := APosicaoInicial - ADecremento;
   end;
 end;
 
