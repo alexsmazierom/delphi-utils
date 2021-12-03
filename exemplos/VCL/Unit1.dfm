@@ -38,7 +38,6 @@ object Form1: TForm1
     Width = 846
     Height = 19
     Panels = <>
-    ExplicitWidth = 736
   end
   object ButtonIterar: TButton
     Left = 208
@@ -145,10 +144,10 @@ object Form1: TForm1
     TabOrder = 12
     OnClick = ButtonArrayFilterJSClick
   end
-  object FDConnection1: TFDConnection
+  object FDConnectionSQLiteMemory: TFDConnection
     Params.Strings = (
-      'LockingMode=Normal'
       'DriverID=SQLite')
+    LoginPrompt = False
     Left = 104
     Top = 104
   end
@@ -162,7 +161,7 @@ object Form1: TForm1
     Top = 224
   end
   object FDQuery1: TFDQuery
-    Connection = FDConnection1
+    Connection = FDConnectionSQLiteMemory
     Left = 112
     Top = 232
   end

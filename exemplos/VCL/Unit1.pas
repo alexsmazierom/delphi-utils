@@ -18,7 +18,7 @@ type
   TForm1 = class(TForm)
     ButtonUsarStringList: TButton;
     ButtonUsarFDQuery: TButton;
-    FDConnection1: TFDConnection;
+    FDConnectionSQLiteMemory: TFDConnection;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     StatusBar1: TStatusBar;
@@ -64,29 +64,24 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 const
   C_DML_ADD_TEMPLATE = 'insert into COMPONENTE values (''%s'', %d, ''%s'')';
-var
-  I, LRegistros: Integer;
-  LCaminho: string;
-  LBaseExiste: Boolean;
 begin
-  // iniciando base de dados SQLite standalone
-  LCaminho := TPath.Combine(GetCurrentDir, 'BASE_SQLITE.DB');
-  LBaseExiste := TFile.Exists(LCaminho);
-  FDConnection1.Params.Database := LCaminho;
-  FDConnection1.Open;
+  // iniciando base de dados SQLite em memória
+  FDConnectionSQLiteMemory.Params.Database := ':memory:';
+  FDConnectionSQLiteMemory.ExecSQL('ATTACH DATABASE ''file::memory:'' AS temp_schema');
+  FDConnectionSQLiteMemory.Open;
 
   // criando tabela exemplo
-  if not LBaseExiste then
-    FDConnection1.ExecSQL('create table COMPONENTE (Nome TEXT NOT NULL, Tag Integer, Classe TEXT);');
-
-  LRegistros := FDConnection1.ExecSQLScalar('select count(0) from COMPONENTE');
+  FDConnectionSQLiteMemory.ExecSQL('create table COMPONENTE (Nome TEXT NOT NULL, Tag Integer, Classe TEXT);');
 
   // populando com componentes da tela
-  if LRegistros = 0 then
-    for I := 0 to ComponentCount - 1 do begin
-      FDConnection1.ExecSQL(
-        Format(C_DML_ADD_TEMPLATE, [Components[I].Name, Components[I].Tag, Components[I].ClassName]) );
-    end;
+  TMetodosAnonimosUtil.Iterar(0, ComponentCount - 1,
+    procedure (I: Integer)
+    begin
+      FDConnectionSQLiteMemory.ExecSQL(
+        Format(C_DML_ADD_TEMPLATE, [Components[I].Name, Components[I].Tag, Components[I].ClassName])
+      );
+    end);
+
 end;
 
 procedure TForm1.ButtonUsarStringListClick(Sender: TObject);
@@ -128,7 +123,7 @@ begin
       LSQLConsulta: string;
     begin
       LSQLConsulta := Format('select * from COMPONENTE where Nome = ''%s''', [LNomeComponente]);
-      Query.Connection := FDConnection1;
+      Query.Connection := FDConnectionSQLiteMemory;
       Query.Open(LSQLConsulta);
       LEncontrouComponente := Query.RecordCount >= 1;
     end);

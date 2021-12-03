@@ -154,10 +154,10 @@ object Form1: TForm1
     Text = 'TMetodosAnonimosUtil.Filter'
     OnClick = ButtonArrayFilterJSClick
   end
-  object FDConnection1: TFDConnection
+  object FDConnectionSQLiteMemory: TFDConnection
     Params.Strings = (
-      'LockingMode=Normal'
       'DriverID=SQLite')
+    LoginPrompt = False
     Left = 176
     Top = 152
   end
@@ -171,7 +171,7 @@ object Form1: TForm1
     Top = 272
   end
   object FDQuery1: TFDQuery
-    Connection = FDConnection1
+    Connection = FDConnectionSQLiteMemory
     Left = 184
     Top = 280
   end
