@@ -230,7 +230,7 @@ begin
       Result := Elemento * 2;
     end);
 
-  CheckTrue( (LArraySaida[0] = 1) and (LArraySaida[1] = 4) and (LArraySaida[2] = 6),
+  CheckTrue( (LArraySaida[0] = 2) and (LArraySaida[1] = 4) and (LArraySaida[2] = 6),
              'testar_metodo_classe_Map_Javascript_manipulando_array_Integer_quadrado: falhou' );
 end;
 
