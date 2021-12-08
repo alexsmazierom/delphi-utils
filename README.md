@@ -12,7 +12,7 @@ Uma vez adicionado a pasta de fontes ao Library Path, adicionar no uses apenas a
 
 ```delphi
 uses
-{ delphi-utils/fontes }  
+{ delphi-utils\fontes }  
   DelphiUtils.Hub;
 ```
 
@@ -25,8 +25,10 @@ Trecho de código de exemplo com método `Usar<T: class>(AObjeto: T; AProcedimen
 ```delphi
 uses
   System.Classes,
+  System.SysUtils,
+  System.StrUtils,
   Vcl.Dialogs,
-{ delphi-utils/fontes }  
+{ delphi-utils\fontes }  
   DelphiUtils.Hub;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -42,7 +44,7 @@ begin
     // instanciando diretamente a lista
     TStringList.Create,
     // método anônimo com instância da lista
-    procedure(StrLista: TStringList)
+    procedure (StrLista: TStringList)
     begin
       StrLista.Add('#1 não requer de variável local para trabalhar com TStringList');
       StrLista.Add('#2 não provoca vazamentos de memória ("memory leaks") pois é liberado automaticamente');
@@ -70,7 +72,7 @@ begin
   // for I := 1 to 10 do
 
   TMetodosAnonimosUtil.Iterar(1, 10,
-    procedure(I: Int64)
+    procedure (I: Int64)
     begin
       Inc(LIteracoes);
       // I armazena a posição atual do iterador e também pode ser utilizada dentro do método anônimo
@@ -99,7 +101,7 @@ begin
     // for (int i = 0; i <= 100; i += 5) [Java]
 
     TMetodosAnonimosUtil.Iterar(ProgressBar1.Value, ProgressBar1.Max,
-      procedure(I: Single)
+      procedure (I: Single)
       begin
         ProgressBar1.Value := I;
         Inc(LIteracoes);
@@ -130,7 +132,7 @@ begin
   // for I := 10 downto 1 do
 
   TMetodosAnonimosUtil.IterarReverso(10, 1,
-    procedure(I: Int64)
+    procedure (I: Int64)
     begin
       Inc(LIteracoes);
       // I armazena a posição atual do iterador e também pode ser utilizada dentro do método anônimo

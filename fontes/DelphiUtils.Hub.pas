@@ -4,7 +4,7 @@ interface
 
 uses
   System.SysUtils,
-{ delphi-utils/fontes }
+{ delphi-utils\fontes }
   DelphiUtils.Genericos,
   DelphiUtils.MetodosAnonimos,
   DelphiUtils.ExpressoesRegulares;
